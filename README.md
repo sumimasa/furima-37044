@@ -58,7 +58,7 @@
 | house_number       | string   | null: false                    |
 | building_name      | string   |                  |
 | telephone_number   | string   | null: false                    |
-| record             | integer  | null: false ,foreign_key: true |
+| record             |references| null: false ,foreign_key: true |
 
 ### Association
 - belongs_to :record
