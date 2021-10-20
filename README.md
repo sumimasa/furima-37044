@@ -29,7 +29,7 @@
 | condition_id       | integer  | null: false                  |
 | cost_allocation_id | integer  | null: false                  |
 | area_id            | integer  | null: false                  |
-| days_id            | integer  | null: false                  | 
+| send_standard_id   | integer  | null: false                  | 
 | price              | integer  | null: false                  |
 | user               |references| null:false,foreign_key: true |
 
