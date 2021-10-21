@@ -109,14 +109,28 @@ RSpec.describe Item, type: :model do
         @item.price = 100
         @item.valid?
 
-        expect(@item.errors.full_messages).to include('Price 価格は300円~9,999,999円で入力してください')
+        expect(@item.errors.full_messages).to include('Price 価格は300円~9,999,999円、半角で入力してください')
       end
 
       it 'priceが10000000以上の時' do
         @item.price = 99_999_999
         @item.valid?
 
-        expect(@item.errors.full_messages).to include('Price 価格は300円~9,999,999円で入力してください')
+        expect(@item.errors.full_messages).to include('Price 価格は300円~9,999,999円、半角で入力してください')
+      end
+
+      it 'priceに半角数字以外が混合していたとき' do
+        @item.price ="12334a"
+        @item.valid?
+        
+        expect(@item.errors.full_messages).to include("Price 価格は300円~9,999,999円、半角で入力してください")
+      end
+
+      it 'ユーザー情報が紐づいていないといけない' do
+        @item.user=nil
+        @item.valid?
+        
+        expect(@item.errors.full_messages).to include("User must exist")
       end
     end
   end
